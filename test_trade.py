@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Aug  5 15:54:55 2021
+Created on Thu Aug 5 15:54:55 2021.
 
 @author: anish
 """
@@ -49,11 +49,11 @@ class TestTrade(unittest.TestCase):
 
     def test_ss_add_trade(self):
         """Test quite easily verifiable functionality."""
-        ss = SymbolStats(0, 0, 0)
+        ss = SymbolStats(10, 0, 0)
         ss.add_trade(10, 10, 10)
         ss.add_trade(13, 20, 20)
-        ss.add_trade(16, 10, 10)
-        self.assertEqual(ss.max_time_gap, 10)
+        ss.add_trade(17, 10, 10)
+        self.assertEqual(ss.max_time_gap, 4)
         self.assertEqual(ss.total_volume, 40)
         self.assertEqual(ss.weighted_average_price, 15)
         self.assertEqual(ss.max_trade_price, 20)
