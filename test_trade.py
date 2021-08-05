@@ -8,8 +8,6 @@ from trade import SymbolStatsList, SymbolStats
 
 import unittest
 
-import random
-
 
 class TestTrade(unittest.TestCase):
     def test_example_output(self):
@@ -34,7 +32,7 @@ class TestTrade(unittest.TestCase):
 
         result = [[symbol,
                    symbol_stats.max_time_gap,
-                   symbol_stats.total_quantity,
+                   symbol_stats.total_volume,
                    symbol_stats.weighted_average_price,
                    symbol_stats.max_trade_price]
                   for symbol, symbol_stats in test_ss_list.sort_ascending()]
@@ -50,11 +48,24 @@ class TestTrade(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_ss_add_trade(self):
-        pass
+        """Test quite easily verifiable functionality."""
+        ss = SymbolStats(0, 0, 0)
+        ss.add_trade(10, 10, 10)
+        ss.add_trade(13, 20, 20)
+        ss.add_trade(16, 10, 10)
+        self.assertEqual(ss.max_time_gap, 10)
+        self.assertEqual(ss.total_volume, 40)
+        self.assertEqual(ss.weighted_average_price, 15)
+        self.assertEqual(ss.max_trade_price, 20)
 
     def test_ssl_add_trade(self):
-        pass
+        """Ensure duplicate symbols are not created."""
+        ssl = SymbolStatsList()
+        ssl.add_trade(11820484, "abc", 44, 213)
+        ssl.add_trade(13133342, "def", 22, 312)
+        ssl.add_trade(25858422, "abc", 11, 312)
+        self.assertEqual(len(ssl.symbol_stats), 2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

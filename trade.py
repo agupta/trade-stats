@@ -9,9 +9,6 @@ import sys  # For custom input/output files.
 import csv  # Bit overkill rn but might be worthwhile if adding functionality.
 import logging
 
-# Uncomment to see logging in action.
-# logging.getLogger().setLevel(logging.INFO)
-
 
 class SymbolStats:
     """
@@ -123,6 +120,10 @@ class SymbolStatsList:
         """Sort the symbols in ascending alphabetical order."""
         return sorted(self.symbol_stats.items())
 
+
+logging.basicConfig(format='%(asctime)s %(message)s')
+# Uncomment to see logging in action.
+# logging.getLogger().setLevel(logging.INFO)
 
 if __name__ == "__main__":
     logging.info("trade.py begun executing...")
