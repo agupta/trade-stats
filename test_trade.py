@@ -61,9 +61,10 @@ class TestTrade(unittest.TestCase):
     def test_ssl_add_trade(self):
         """Ensure duplicate symbols are not created."""
         ssl = SymbolStatsList()
-        ssl.add_trade(11820484, "abc", 44, 213)
-        ssl.add_trade(13133342, "def", 22, 312)
-        ssl.add_trade(25858422, "abc", 11, 312)
+        for _ in range(1000):
+            ssl.add_trade(11820484, "abc", 44, 213)
+            ssl.add_trade(13133342, "def", 22, 312)
+            ssl.add_trade(25858422, "abc", 11, 312)
         self.assertEqual(len(ssl.symbol_stats), 2)
 
 
