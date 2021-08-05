@@ -9,6 +9,9 @@ import sys  # For custom input/output files.
 import csv  # Bit overkill rn but might be worthwhile if adding functionality.
 import logging
 
+# Uncomment to see logging in action.
+# logging.getLogger().setLevel(logging.INFO)
+
 
 class SymbolStats:
     """
@@ -151,7 +154,7 @@ if __name__ == "__main__":
             lines_read += 1
         logging.info(f"Wrote {lines_read} lines.")
 
-    logging.info("Attempting to open output file for writing")
+    logging.info("Attempting to open output file for writing.")
     with open(output_filename, "w", newline="") as g:
         writer = csv.writer(g)
         lines_written = 0
